@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Обратный отсчет</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #1E1E2F, #282C34);
+            color: #ffffff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            text-align: center;
+        }
+        .container {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+        }
+        h1 {
+            font-size: 28px;
+            margin-bottom: 15px;
+            color: #61AFEF;
+        }
+        #timer {
+            font-size: 40px;
+            font-weight: bold;
+            padding: 10px;
+            color: #98C379;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>TARGET date 17.03.2025</h1>
+        <div id="timer">loading...</div>
+    </div>
+    <script>
+        function updateTimer() {
+            const targetDate = new Date("2025-03-21T20:00:00");
+            const now = new Date();
+            const diff = targetDate - now;
+
+            if (diff > 0) {
+                const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+                const minutes = Math.floor((diff / (1000 * 60)) % 60);
+                const seconds = Math.floor((diff / 1000) % 60);
+                document.getElementById("timer").innerText = `${days} days, ${hours}:${minutes}:${seconds}`;
+            } else {
+                document.getElementById("timer").innerText = "Success!";
+            }
+        }
+        setInterval(updateTimer, 1000);
+        updateTimer();
+    </script>
+</body>
+</html>
